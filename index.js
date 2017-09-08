@@ -17,10 +17,41 @@ app.use(bodyParser.json());
 
 //handle request
 app.get('/api/product', (req, response) => {
-	response.status(200).send({ products: [] });
+
+	Product.find({}, (error, products) => {
+
+		if (error) {
+			return response.status(500).send({ message: `failed to query products: ${error}` });
+		}
+
+		if (!products) {
+			return response.status(404).send({ message: "there isn't products" });
+		}
+
+		response.status(200).send({ products });//when variable have the same name of key we have use only put variable instead of 
+		//{ products: products }
+
+	});
+
 });
 
 app.get('/api/product/:productId', (req, response) => {
+
+	let productId = req.params.productId;
+
+	Product.findById(productId, (error, product) => {
+		
+		if (error) {
+			return response.status(500).send({ message: `failed to query product: ${error}` });
+		}
+
+		if (!product) {
+			return response.status(404).send({ message: "product doesn't exist" });
+		}
+
+		response.status(200).send({ product });//when variable have the same name of key we have use only put variable instead of 
+		//{ product: product }
+	});
 
 });
 

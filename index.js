@@ -80,9 +80,42 @@ app.post('/api/product', (req, response) => {
 
 app.put('/api/product/:productId', (req, response) => {
 
+	let productId = req.params.productId;
+	let updatedata = req.body;//data received to be updated
+
+	Product.findByIdAndUpdate(productId, updatedata, (error, productupdt) => {
+
+		if (error) {
+			response.status(500).send( { message: `failed to update product ${error}` } );
+		}
+
+		response.status(200).send( { message: 'product updated successfully', productupdt } );
+
+	});
+
 });
 
 app.delete('/api/product/:productId', (req, response) =>{
+
+	let productId = req.params.productId;
+
+	Product.findById(productId, (error, product) => {
+
+		if (error) {
+			response.status(500).send( { message: `failed to delete product ${error}` } );
+		}
+
+		product.remove(error => {
+
+			if (error) {
+				response.status(500).send( { message: `failed to delete product ${error}` } );
+			}
+
+			response.status(200).send( { message: 'product removed successfully' } );
+
+		});
+
+	});
 
 });
 

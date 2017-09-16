@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const User = require('../models/user');//also can be '../user.js'
+const service = require('../services');
 
 function singUp (req, res) {
 	

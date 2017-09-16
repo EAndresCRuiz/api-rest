@@ -1,7 +1,7 @@
 {
   "name": "api-rest",
   "version": "1.0.0",
-  "description": "Proyecto de API RESTful con Npde.js y Express",
+  "description": "Proyecto de API RESTful con Node.js y Express",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -10,8 +10,12 @@
   "author": "Andres Chavez",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "crypto": "^1.0.1",
     "express": "^4.15.4",
+    "jwt-simple": "^0.5.1",
+    "moment": "^2.18.1",
     "mongoose": "^4.11.10"
   },
   "devDependencies": {

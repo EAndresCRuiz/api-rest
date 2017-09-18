@@ -20,6 +20,7 @@ function isAuth (req, res, next) {
 		.catch((error) => {
 			
 			//res.status(response.status).send(response.message);
+			console.log('catch'+error);
 			res.status(500).send(error.message);
 
 		});

@@ -16,25 +16,24 @@ function createToken (user) {
 }
 
 function decodeToken (token) {
-	const decode = new Promise((reject, resolve) =>{//creation of promise native ECMA6
+
+	const decode = new Promise((resolve, reject) => {//creation of promise native ECMA6
 
 		try{
 
 			const payload = jwt.decode(token, config.SECRET_TOKEN);
 			console.log(payload);
 			if (payload.exp <= moment().unix()) {
-console.log(payload.exp);
+
 				reject({ 
 					status: 401,
 					message: `Token expired` 
 				});
 
 			}
-console.log('RESOLVE '+ payload.sub);
+
 			resolve(payload.sub);
 
-console.log('RESOLVE 2'+ payload.sub);
-console.log('RESOLVE 2'+ payload.sub);
 
 		}catch(error){
 
@@ -46,7 +45,6 @@ console.log('RESOLVE 2'+ payload.sub);
 		}
 
 		});
-console.log('RESOLVE 2'+ decode);
 
 	return decode;
 }

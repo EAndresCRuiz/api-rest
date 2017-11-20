@@ -11,19 +11,20 @@
 	const formLogin = document.querySelector('#login');
 	const formData = new FormData(formLogin);
 
-	formLogin.addEventListener('submit', event => (
+	formLogin.addEventListener('submit', function(event) {
 
 		event.preventDefault();
 
-		fetch('/api/signin', {
+		fetch('/api/user/signin', {
 
 			method: 'POST',
 			body: formData
 
 		})
 		.then(res => res.json())
-		.then(data => console.log(data));
+		.then(data => {
+			localStorage.setItem('token', data.token)});
 
-	));
+	});
 
 </script>
